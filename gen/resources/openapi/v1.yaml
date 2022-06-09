@@ -1,0 +1,70 @@
+openapi: '3.0.2'
+info:
+  title: Recipe API
+  version: '1.0.0'
+servers:
+  - url: https://api.server.test/v1
+paths:
+  /recipes:
+    get:
+      operationId: Recipes
+      description: レシピ
+      tags:
+        - recipe
+      parameters:
+        - in: query
+          name: q
+          schema:
+            type: string
+          example: トマト
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeCollection'
+components:
+  schemas:
+    RecipeCollection:
+      type: object
+      required:
+        - data
+      properties:
+        data: 
+          type: array
+          description: レシピの配列
+          items:
+            $ref: '#/components/schemas/Recipe'
+    Recipe:
+      description: レシピ
+      type: object
+      required:
+        - postalcode
+      properties:
+        url:
+          type: string
+          description: URL
+          example: https://example.com/
+        title:
+          type: string
+          description: レシピ名
+          example: 簡単！筍と豚肉のチンジャオロース風
+        ingredient:
+          type: string
+          description: 材料
+          example: |
+            きゅうり 2本
+            醤油 大さじ2
+            海苔　1枚
+        instruction:
+          type: string
+          description: 作り方
+          example: |
+            ①きゅうりをちぎってボウルへ
+            ②醤油の加えて海苔を和えれば完成
+        created_at:
+          type: string
+          format: date-time
+          description: 作成日時
+          example: "2021-07-14T07:56:42+09:00"

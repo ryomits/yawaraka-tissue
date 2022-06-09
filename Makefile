@@ -13,6 +13,11 @@ setup: ## Install depeendent tools and setup project
 	go install github.com/cosmtrek/air@latest
 	go install github.com/kyoh86/richgo@latest
 
+
+.PHONY: gen-api
+gen-api: ## Generate router and request type structs from OpenAPI spec.
+	go generate gen/gen_openapi.go
+
 .PHONY: run
 run: ## Run API server
 	air -c .air.toml
