@@ -24,14 +24,96 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RecipeCollection'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '425':
+          $ref: '#/components/responses/RequestValidationError'
+        '500':
+          $ref: '#/components/responses/Unknown'
 components:
+  responses:
+    NotFound:
+      description: 'Not Found'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResourceNotFound'
+    Unknown:
+      description: 'Unknown error'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RequestValidationError:
+      description: 'Validation error'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ValidationError'
+
   schemas:
+    Error:
+      type: object
+      required:
+        - type
+        - title
+      properties:
+        type:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+    ValidationError:
+      type: object
+      required:
+        - type
+        - title
+      properties:
+        type:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        invalid_params:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvalidParam'
+    InvalidParam:
+      type: object
+      properties:
+        name:
+          type: string
+          example: ''
+        reason:
+          type: string
+          example: ''
+    ResourceNotFound:
+      type: object
+      required:
+        - type
+        - title
+      properties:
+        type:
+          type: string
+          example: ''
+        title:
+          type: string
+          example: ''
+        detail:
+          type: string
+          example: ''
+
     RecipeCollection:
       type: object
       required:
         - data
       properties:
-        data: 
+        data:
           type: array
           description: レシピの配列
           items:

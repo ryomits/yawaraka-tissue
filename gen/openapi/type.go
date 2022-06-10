@@ -7,6 +7,19 @@ import (
 	"time"
 )
 
+// Error defines model for Error.
+type Error struct {
+	Detail *string `json:"detail,omitempty"`
+	Title  string  `json:"title"`
+	Type   string  `json:"type"`
+}
+
+// InvalidParam defines model for InvalidParam.
+type InvalidParam struct {
+	Name   *string `json:"name,omitempty"`
+	Reason *string `json:"reason,omitempty"`
+}
+
 // レシピ
 type Recipe struct {
 	// 作成日時
@@ -30,6 +43,29 @@ type RecipeCollection struct {
 	// レシピの配列
 	Data []Recipe `json:"data"`
 }
+
+// ResourceNotFound defines model for ResourceNotFound.
+type ResourceNotFound struct {
+	Detail *string `json:"detail,omitempty"`
+	Title  string  `json:"title"`
+	Type   string  `json:"type"`
+}
+
+// ValidationError defines model for ValidationError.
+type ValidationError struct {
+	InvalidParams *[]InvalidParam `json:"invalid_params,omitempty"`
+	Title         string          `json:"title"`
+	Type          string          `json:"type"`
+}
+
+// NotFound defines model for NotFound.
+type NotFound ResourceNotFound
+
+// RequestValidationError defines model for RequestValidationError.
+type RequestValidationError ValidationError
+
+// Unknown defines model for Unknown.
+type Unknown Error
 
 // RecipesParams defines parameters for Recipes.
 type RecipesParams struct {
