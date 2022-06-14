@@ -64,6 +64,9 @@ type NotFound ResourceNotFound
 // RequestValidationError defines model for RequestValidationError.
 type RequestValidationError ValidationError
 
+// Unauthorized defines model for Unauthorized.
+type Unauthorized Error
+
 // Unknown defines model for Unknown.
 type Unknown Error
 
