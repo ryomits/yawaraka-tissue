@@ -30,6 +30,14 @@ func Server() *http.Server {
 	}
 }
 
+func errorHandler(w http.ResponseWriter, r *http.Request, err error) {
+	p := problem.NewBadRequest(problem.TypeBadRequest)
+
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(http.StatusBadRequest)
+	_ = json.NewEncoder(w).Encode(build.Error(p))
+}
+
 func notfound(w http.ResponseWriter, r *http.Request) {
 	p := problem.NewNotFound(
 		problem.TypeResourceNotFound,
