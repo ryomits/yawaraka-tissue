@@ -10,3 +10,11 @@ services:
     volumes:
       - "..:/app"
     command: make run
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "8081:8080"
+    volumes:
+      - ../gen/resources/openapi:/usr/share/nginx/html/openapi
+    environment:
+      API_URL: openapi/v1.yaml
