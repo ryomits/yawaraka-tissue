@@ -13,6 +13,8 @@ setup: ## Install depeendent tools and setup project
 	go install github.com/cosmtrek/air@latest
 	go install github.com/kyoh86/richgo@latest
 
+test: ## Run test
+	APP_ENV=test richgo test --cover yawaraka-tissue/${TARGET}
 
 .PHONY: gen-api
 gen-api: ## Generate router and request type structs from OpenAPI spec.

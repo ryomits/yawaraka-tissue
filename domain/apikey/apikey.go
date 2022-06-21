@@ -110,7 +110,7 @@ func (v *Verifier) Verify(signedString string) error {
 	if !v.isAllowedIssuer(iss) {
 		return problem.NewUnauthorized(
 			problem.TypeUnAuthorized,
-		).WithDetail(fmt.Sprintf("issuer `%v` is not found in allowed list", iss))
+		).WithDetail(fmt.Sprintf("Issuer `%v` is not found in allowed list", iss))
 	}
 
 	return nil
@@ -136,7 +136,7 @@ func (e *Encoder) Encode(kid string, validMinutes int32) (string, error) {
 
 	key, ok := e.secrets[kid]
 	if !ok {
-		return "", fmt.Errorf("failed to find secret kid=%v", kid)
+		return "", fmt.Errorf("Failed to find secret kid=%v", kid)
 	}
 
 	return token.SignedString([]byte(key))

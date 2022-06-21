@@ -51,26 +51,26 @@ func RespondError(ctx context.Context, w http.ResponseWriter, err error) {
 		return
 	}
 
-	var fb *problem.ErrForbidden
-	if errors.As(err, &fb) {
-		w.WriteHeader(http.StatusForbidden)
-		_ = json.NewEncoder(w).Encode(build.Error(fb))
-		return
-	}
+	//var fb *problem.ErrForbidden
+	//if errors.As(err, &fb) {
+	//	w.WriteHeader(http.StatusForbidden)
+	//	_ = json.NewEncoder(w).Encode(build.Error(fb))
+	//	return
+	//}
 
-	var nf *problem.ErrNotFound
-	if errors.As(err, &nf) {
-		w.WriteHeader(http.StatusNotFound)
-		_ = json.NewEncoder(w).Encode(build.Error(nf))
-		return
-	}
+	//var nf *problem.ErrNotFound
+	//if errors.As(err, &nf) {
+	//	w.WriteHeader(http.StatusNotFound)
+	//	_ = json.NewEncoder(w).Encode(build.Error(nf))
+	//	return
+	//}
 
-	var se *problem.ErrInternalServerError
-	if errors.As(err, &se) {
-		w.WriteHeader(http.StatusInternalServerError)
-		_ = json.NewEncoder(w).Encode(build.Error(se))
-		return
-	}
+	//var se *problem.ErrInternalServerError
+	//if errors.As(err, &se) {
+	//	w.WriteHeader(http.StatusInternalServerError)
+	//	_ = json.NewEncoder(w).Encode(build.Error(se))
+	//	return
+	//}
 
 	w.WriteHeader(http.StatusInternalServerError)
 	_ = json.NewEncoder(w).Encode(build.FatalError())
