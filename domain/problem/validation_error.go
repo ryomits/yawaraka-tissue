@@ -19,7 +19,7 @@ func NewValidationError(e ErrorType) *ErrValidationError {
 	}
 }
 
-func (e *ErrValidationError) WithDetaul(d string) *ErrValidationError {
+func (e *ErrValidationError) WithDetail(d string) *ErrValidationError {
 	e.detail = d
 	return e
 }
