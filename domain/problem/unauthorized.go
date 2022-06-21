@@ -12,7 +12,7 @@ func NewUnauthorized(e ErrorType) *ErrUnauthorized {
 	}
 }
 
-func (e *ErrUnauthorized) WithDetaul(d string) *ErrUnauthorized {
+func (e *ErrUnauthorized) WithDetail(d string) *ErrUnauthorized {
 	e.detail = d
 	return e
 }

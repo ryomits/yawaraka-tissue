@@ -9,6 +9,8 @@ require (
 	github.com/pkg/errors v0.9.1
 )
 
+require github.com/golang-jwt/jwt v3.2.2+incompatible
+
 require (
 	github.com/deepmap/oapi-codegen v1.11.0
 	github.com/ghodss/yaml v1.0.0 // indirect
