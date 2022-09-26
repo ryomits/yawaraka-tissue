@@ -12,11 +12,18 @@ RUN \
   gcc \
   make \
   musl-dev \
+  python3-dev \
+  py3-pip \
+  curl \
   libffi-dev \
   ca-certificates \
   tzdata && \
   update-ca-certificates && \
   ln -f -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+RUN mkdir tmp && curl https://bootstrap.pypa.io/get-pip.py -o tmp/get-pip.py && python3 tmp/get-pip.py --force-reinstall
+RUN pip install --upgrade pip
+RUN pip install awscli awscli-local cryptography
 
 RUN wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.46.2
 RUN go install golang.org/x/tools/cmd/goimports@latest

@@ -18,3 +18,9 @@ services:
       - ../gen/resources/openapi:/usr/share/nginx/html/openapi
     environment:
       API_URL: openapi/v1.yaml
+  localstack:
+    image: localstack/localstack
+    environment:
+      - HOSTNAME_EXTERNAL=localstack
+      - DEFAULT_REGION=ap-northeast-1
+      - SERVICES=sqs
