@@ -23,3 +23,7 @@ gen-api: ## Generate router and request type structs from OpenAPI spec.
 .PHONY: run
 run: ## Run API server
 	air -c .air.toml
+
+.PHONY: setup-queue
+setup-queue:
+	awslocal sqs create-queue --queue-name yawaraka-tissue --endpoint-url http://localstack:4566 --region ap-northeast-1
